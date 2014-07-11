@@ -61,6 +61,15 @@ public abstract class AbstractMonitor implements Runnable {
 	public long getFrequency() {
 		return this.frequency;
 	}
+        
+        public void setFrequency(String freq) {
+            try {
+                long num = Long.parseLong(freq);
+                setFrequency(freq);
+            } catch (NumberFormatException nfe) {
+                // TODO
+            }
+        }
 	
 	public void setFrequency(long freq) {
 		if (freq > 0) {
