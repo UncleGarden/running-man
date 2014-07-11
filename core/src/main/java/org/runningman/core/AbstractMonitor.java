@@ -11,7 +11,7 @@ public abstract class AbstractMonitor implements Runnable {
 	protected DateTime startTime;
 	protected DateTime endTime;
 	protected String note;
-	protected long frequency = 60;
+	protected long frequency = Constant.SECOND;
 
 	public AbstractMonitor(String id, String note) {
 		this.id = id;
@@ -74,6 +74,6 @@ public abstract class AbstractMonitor implements Runnable {
 	
 	public abstract void stop();
 	
-	protected abstract void monitor();
+	protected abstract void monitor() throws Exception;
 
 }
