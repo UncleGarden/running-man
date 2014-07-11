@@ -7,11 +7,11 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractMonitor implements Runnable {
 
 	private static Logger logger = LoggerFactory.getLogger(AbstractMonitor.class);
-	private String id;
-	private DateTime startTime;
-	private DateTime endTime;
-	private String note;
-	private int frequency = 60;
+	protected String id;
+	protected DateTime startTime;
+	protected DateTime endTime;
+	protected String note;
+	protected long frequency = 60;
 
 	public AbstractMonitor(String id, String note) {
 		this.id = id;
@@ -58,11 +58,11 @@ public abstract class AbstractMonitor implements Runnable {
 		}
 	}
 	
-	public int getFrequency() {
+	public long getFrequency() {
 		return this.frequency;
 	}
 	
-	public void setFrequency(int freq) {
+	public void setFrequency(long freq) {
 		if (freq > 0) {
 			this.frequency = freq;
 		}
@@ -70,6 +70,10 @@ public abstract class AbstractMonitor implements Runnable {
 	
 	public abstract String status();
 	
-	public abstract String monitor();
+	public abstract void start();
+	
+	public abstract void stop();
+	
+	protected abstract void monitor();
 
 }
