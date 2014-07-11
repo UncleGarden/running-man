@@ -1,6 +1,10 @@
 package org.runningman.manager;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
+
 import org.runningman.core.AbstractMonitor;
 import org.runningman.core.URLMonitor;
 
@@ -14,7 +18,7 @@ public class MonitorManager {
     private ConcurrentHashMap<String, AbstractMonitor> monitors;
     
     public MonitorManager() {
-        this.monitors = new ConcurrentHashMap<>();
+        this.monitors = new ConcurrentHashMap<>(16, 0.9f, 1);
     }
     
     public AbstractMonitor addMonitor(String id, String note, String target) {
@@ -33,6 +37,14 @@ public class MonitorManager {
     
     public AbstractMonitor getMonitor(String id) {
         return monitors.get(id);
+    }
+    
+    public List<AbstractMonitor> getAll() {
+    	List<AbstractMonitor> list = new ArrayList<>();
+    	for (Entry<String, AbstractMonitor> e : monitors.entrySet()) {
+    		list.add(e.getValue());
+    	}
+    	return list;
     }
     
     /**
