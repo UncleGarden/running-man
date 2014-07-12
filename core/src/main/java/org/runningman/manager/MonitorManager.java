@@ -56,4 +56,8 @@ public class MonitorManager {
         monitors.remove(id);
     }
     
+    public boolean isExist(String id) {
+    	return monitors.containsKey(id);
+    }
+    
 }
