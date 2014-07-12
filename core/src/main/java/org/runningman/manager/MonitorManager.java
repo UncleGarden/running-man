@@ -32,6 +32,7 @@ public class MonitorManager {
         monitor.setStartTime(startTimeStr);
         monitor.setEndTime(endTimeStr);
         monitor.setFrequency(freqency);
+        monitor.start();
         return monitor;
     }
     
@@ -53,7 +54,8 @@ public class MonitorManager {
      * @param id 
      */
     public void removeMonitor(String id) {
-        monitors.remove(id);
+        AbstractMonitor monitor = monitors.remove(id);
+        monitor.stop();
     }
     
     public boolean isExist(String id) {
