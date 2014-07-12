@@ -11,11 +11,13 @@ public abstract class AbstractMonitor implements Runnable {
 	protected DateTime startTime;
 	protected DateTime endTime;
 	protected String note;
+	protected String target;
 	protected long frequency = Constant.SECOND;
 
-	public AbstractMonitor(String id, String note) {
+	public AbstractMonitor(String id, String note, String target) {
 		this.id = id;
 		this.note = note;
+		this.target = target;
 	}
 
 	public String getId() {
@@ -55,6 +57,16 @@ public abstract class AbstractMonitor implements Runnable {
 	public void setNote(String note) {
 		if (note != null) {
 			this.note = note;
+		}
+	}
+	
+	public String getTarget() {
+		return this.target;
+	}
+	
+	public void setTarget(String target) {
+		if (target != null) {
+			this.target = target;
 		}
 	}
 	

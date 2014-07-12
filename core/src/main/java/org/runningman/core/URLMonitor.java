@@ -14,25 +14,13 @@ import org.apache.http.impl.client.HttpClients;
 
 public class URLMonitor extends AbstractMonitor {
 
-    private String url;
     private Thread monitorThread;
     private CloseableHttpClient httpClient;
     private String msg;
 
     public URLMonitor(String id, String note, String url) {
-        super(id, note);
-        this.url = url;
+        super(id, note, url);
         this.httpClient = HttpClients.createDefault();
-    } 
-
-    public String getUrl() {
-        return this.url;
-    }
-
-    public void setUrl(String url) {
-        if (url != null) {
-            this.url = url;
-        }
     }
     
     protected void setMsg(String msg) {
@@ -97,7 +85,7 @@ public class URLMonitor extends AbstractMonitor {
     }
     
     private void getResponse() throws IOException {
-        HttpGet httpGet = new HttpGet(url);
+        HttpGet httpGet = new HttpGet(target);
         CloseableHttpResponse res = httpClient.execute(httpGet);
         try {
             HttpEntity entity = res.getEntity();
